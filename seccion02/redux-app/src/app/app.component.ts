@@ -21,8 +21,8 @@ export class AppComponent {
 
   ngOnInit(): void {
     this._store.subscribe(state => {
-      console.log("🚀 ~ file: app.component.ts ~ line 19 ~ AppComponent ~ ngOnInit ~ state", state);
-      this.contador = state.contador
+      console.log("🚀 ~ file: app.component.ts ~ line 24 ~ AppComponent ~ ngOnInit ~ state", state);
+      this.contador = state.contador;
     });
   }
 
