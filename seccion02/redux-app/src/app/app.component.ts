@@ -1,10 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { StoreContador } from './models/store-contador.model';
 import * as actions from './state/contador/contador.actions';
-
-interface StoreContador{
-  contador: number
-}
 
 @Component({
   selector: 'app-root',
