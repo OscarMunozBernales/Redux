@@ -12,5 +12,5 @@ export const initialState: TodoModel[] = [
 
 export const todoReducer = createReducer(
   initialState,
-  on(createTodoAction, (state, { texto }) => [...state, { id: 1, texto: texto, completado: false }])
+  on(createTodoAction, (state, { texto }) => [...state, { id: new Date().getTime(), texto: texto, completado: false }])
 );
