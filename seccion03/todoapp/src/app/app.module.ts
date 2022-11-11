@@ -24,7 +24,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     TodoModule,
-    StoreModule.forRoot({ count: todoReducer }),
+    StoreModule.forRoot({ todo: todoReducer }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,

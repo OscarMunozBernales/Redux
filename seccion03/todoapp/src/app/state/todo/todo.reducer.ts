@@ -8,6 +8,16 @@ export const initialState: TodoModel[] = [
     texto: 'Salvar al mundo',
     completado: false
   },
+  {
+    id: new Date().getTime(),
+    texto: 'Salvar al mundo',
+    completado: false
+  },
+  {
+    id: new Date().getTime(),
+    texto: 'Salvar al mundo',
+    completado: false
+  },
 ];
 
 export const todoReducer = createReducer(
