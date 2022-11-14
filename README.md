@@ -1,4 +1,2 @@
 # Redux
 Redux en angular
-
-
