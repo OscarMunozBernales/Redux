@@ -5,17 +5,17 @@ import { TodoModel } from './todo.model';
 export const initialState: TodoModel[] = [
   {
     id: new Date().getTime(),
-    texto: 'Salvar al mundo',
+    texto: 'Salvar al mundo 1',
     completado: false
   },
   {
     id: new Date().getTime(),
-    texto: 'Salvar al mundo',
+    texto: 'Salvar al mundo 2',
     completado: false
   },
   {
     id: new Date().getTime(),
-    texto: 'Salvar al mundo',
+    texto: 'Salvar al mundo 3',
     completado: false
   },
 ];
