@@ -11,5 +11,9 @@
     <button class="destroy"></button>
   </div>
 
-  <input class="edit" value="{{ todo.texto }}"  (blur)="terminarEdicion()" #txtInput>
+  <input  class="edit"
+          value="{{ todo.texto }}"
+          (blur)="terminarEdicion()"
+          [formControl]="txtInput"
+          #idTxtInput>
 </li>

@@ -19,11 +19,8 @@ export class TodoListComponent implements OnInit {
 
   ngOnInit(): void {
     this._store.select('todo').subscribe(
-      todos => {
-        console.log("🚀 ~ file: todo-list.component.ts ~ line 23 ~ TodoListComponent ~ ngOnInit ~ todos", todos)
-        this.todos = todos
-      }
-    ).unsubscribe()
+      todos => this.todos = todos
+    );
   }
 
 }

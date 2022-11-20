@@ -1,6 +1,9 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { TitleStrategy } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/state/app.state';
+import { completedTodoAction } from 'src/app/state/todo/todo.actions';
 import { TodoModel } from 'src/app/state/todo/todo.model';
 import { TodoModule } from '../todo.module';
 
@@ -12,25 +15,33 @@ import { TodoModule } from '../todo.module';
 export class TodoItemComponent implements OnInit {
 
   @Input() todo: TodoModel;
-  @ViewChild('txtInput') txtInput: ElementRef;
+  @ViewChild('idTxtInput') idTxtInput: ElementRef;
 
-  chkComplete: FormControl = new FormControl();
-  textINput: FormControl = new FormControl();
+  chkComplete: FormControl;
+  txtInput: FormControl;
 
   editando: boolean = false;
 
-  constructor() {}
+  constructor(
+    private _store: Store<AppState>
+  ) {}
 
   ngOnInit(): void {
-    this.chkComplete.setValue( this.todo.completado );
-    this.textINput = new FormControl( this.todo.texto, Validators.required )
+
+    this.chkComplete = new FormControl( this.todo.completado );
+    this.txtInput = new FormControl( this.todo.texto, Validators.required );
+
+    this.chkComplete.valueChanges.subscribe(
+      valor => this._store.dispatch( completedTodoAction({ id: this.todo.id }) )
+    );
+
   }
 
   editar(): void {
     this.editando = true;
 
     setTimeout(() => {
-      this.txtInput.nativeElement.select();
+      this.idTxtInput.nativeElement.select();
     }, 1);
   }
 
