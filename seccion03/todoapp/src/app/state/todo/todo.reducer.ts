@@ -2,25 +2,13 @@ import { createReducer, on } from '@ngrx/store';
 import { createTodoAction } from './todo.actions';
 import { TodoModel } from './todo.model';
 
-export const initialState: TodoModel[] = [
-  {
-    id: new Date().getTime(),
-    texto: 'Salvar al mundo 1',
-    completado: false
-  },
-  {
-    id: new Date().getTime(),
-    texto: 'Salvar al mundo 2',
-    completado: false
-  },
-  {
-    id: new Date().getTime(),
-    texto: 'Salvar al mundo 3',
-    completado: false
-  },
+export let initialState: TodoModel[] = [
+  new TodoModel('Salvar al mundo 1'),
+  new TodoModel('Comprar agua'),
+  new TodoModel('Cargar celular')
 ];
 
 export const todoReducer = createReducer(
   initialState,
-  on(createTodoAction, (state, { texto }) => [...state, { id: new Date().getTime(), texto: texto, completado: false }])
+  on(createTodoAction, (state, { texto }) => [...state, new TodoModel(texto)])
 );
