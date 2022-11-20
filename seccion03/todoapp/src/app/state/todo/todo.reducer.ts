@@ -1,3 +1,4 @@
+import { identifierName } from '@angular/compiler';
 import { createReducer, on } from '@ngrx/store';
 import * as actions from './todo.actions';
 import { TodoModel } from './todo.model';
@@ -24,5 +25,11 @@ export const todoReducer = createReducer(
         ? { ...todo, texto: text }
         : todo
     });
+  }),
+
+  on(actions.deleteTodoACtion, ( state, { id }) => {
+    return state.filter( todo => {
+      return todo.id !== id;
+    })
   }),
 );
