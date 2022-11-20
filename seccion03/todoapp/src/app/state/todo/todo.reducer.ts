@@ -40,4 +40,8 @@ export const todoReducer = createReducer(
       }
     );
   }),
+
+  on(actions.deleteAllTodoAction, (state) => {
+    return state.filter( todo => !todo.completado )
+  })
 );
