@@ -32,4 +32,12 @@ export const todoReducer = createReducer(
       return todo.id !== id;
     })
   }),
+
+  on(actions.completeAllTodoAction, (state, { complete }) => {
+    return state.map(
+      todo => {
+        return { ...todo, completado: complete }
+      }
+    );
+  }),
 );

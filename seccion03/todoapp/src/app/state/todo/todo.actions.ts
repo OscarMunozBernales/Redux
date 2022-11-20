@@ -10,6 +10,11 @@ export const completedTodoAction = createAction(
   props<{ id: number }>()
 );
 
+export const completeAllTodoAction = createAction(
+  '[TODO] completed all todo action',
+  props<{ complete: boolean }>()
+);
+
 export const editTextTodoAction = createAction(
   '[TODO] Edit text TODO item',
   props<{ id: number, text: string }>()
