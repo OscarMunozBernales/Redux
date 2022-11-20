@@ -3,7 +3,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { TitleStrategy } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/state/app.state';
-import { completedTodoAction } from 'src/app/state/todo/todo.actions';
+import * as actions from 'src/app/state/todo/todo.actions';
 import { TodoModel } from 'src/app/state/todo/todo.model';
 import { TodoModule } from '../todo.module';
 
@@ -24,21 +24,22 @@ export class TodoItemComponent implements OnInit {
 
   constructor(
     private _store: Store<AppState>
-  ) {}
+  ) { }
 
   ngOnInit(): void {
 
-    this.chkComplete = new FormControl( this.todo.completado );
-    this.txtInput = new FormControl( this.todo.texto, Validators.required );
+    this.chkComplete = new FormControl(this.todo.completado);
+    this.txtInput = new FormControl(this.todo.texto, Validators.required);
 
     this.chkComplete.valueChanges.subscribe(
-      valor => this._store.dispatch( completedTodoAction({ id: this.todo.id }) )
+      valor => this._store.dispatch(actions.completedTodoAction({ id: this.todo.id }))
     );
 
   }
 
   editar(): void {
     this.editando = true;
+    this.txtInput.setValue( this.todo.texto );
 
     setTimeout(() => {
       this.idTxtInput.nativeElement.select();
@@ -47,6 +48,14 @@ export class TodoItemComponent implements OnInit {
 
   terminarEdicion(): void {
     this.editando = false;
+
+    if ( this.txtInput.invalid ) { return; }
+    if ( this.txtInput.value === this.todo.texto ) { return; }
+
+    this._store.dispatch(actions.editTextTodoAction({
+      id: this.todo.id,
+      text: this.txtInput.value
+    }));
   }
 
 }

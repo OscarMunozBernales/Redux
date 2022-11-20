@@ -10,12 +10,19 @@ export let initialState: TodoModel[] = [
 
 export const todoReducer = createReducer(
   initialState,
-  on(actions.createTodoAction, (state, { texto }) => [...state, new TodoModel(texto)]),
+  on(actions.createTodoAction, ( state, { texto }) => [...state, new TodoModel(texto)]),
   on(actions.completedTodoAction, ( state, { id }) => {
     return state.map( todo => {
       return todo.id === id
         ? { ...todo, completado: !todo.completado }
         : todo
     });
-  })
+  }),
+  on(actions.editTextTodoAction, ( state, { id, text }) => {
+    return state.map( todo => {
+      return todo.id === id
+        ? { ...todo, texto: text }
+        : todo
+    });
+  }),
 );

@@ -9,3 +9,10 @@ export const completedTodoAction = createAction(
   '[TODO] completed TODO item',
   props<{ id: number }>()
 );
+
+export const editTextTodoAction = createAction(
+  '[TODO] Edit text TODO item',
+  props<{ id: number, text: string }>()
+);
+
+
